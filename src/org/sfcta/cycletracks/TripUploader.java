@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.SecureCacheResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +49,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.Settings.System;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -173,7 +175,7 @@ public class TripUploader extends AsyncTask <Long, Integer, Boolean> {
 
     public String getDeviceId() {
         String androidId = System.getString(this.mCtx.getContentResolver(),
-                System.ANDROID_ID);
+                Secure.ANDROID_ID);
         String androidBase = "androidDeviceId-";
 
         if (androidId == null) { // This happens when running in the Emulator

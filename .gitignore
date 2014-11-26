@@ -3,4 +3,6 @@ gen
 tests/bin
 tests/gen
 Thumbs.db
-
+.idea
+*.iml
+out
