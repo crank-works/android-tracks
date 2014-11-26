@@ -3,6 +3,11 @@ gen
 tests/bin
 tests/gen
 Thumbs.db
-.idea
-*.iml
 out
+
+# vim swap files
+*.swp
+
+# Intellij user files
+.idea/workspace.xml
+.idea/tasks.iml
