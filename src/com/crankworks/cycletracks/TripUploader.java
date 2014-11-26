@@ -19,13 +19,12 @@
  *   along with CycleTracks.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.sfcta.cycletracks;
+package com.crankworks.cycletracks;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.SecureCacheResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
