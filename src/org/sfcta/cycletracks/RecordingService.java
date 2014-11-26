@@ -241,7 +241,27 @@ public class RecordingService extends Service implements LocationListener {
         int minutes = (int) (when - trip.startTime) / 60000;
 		CharSequence tickerText = String.format("Still recording (%d min)", minutes);
 
-		Notification notification = new Notification(icon, tickerText, when);
+        Context context = this;
+        CharSequence contentTitle = "CycleTracks - Recording";
+        CharSequence contentText = "Tap to finish your trip";
+        Intent notificationIntent = new Intent(context, RecordingActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+
+//      Notification notification = new Notification(icon, tickerText, when);
+        /*  MARCUS
+            Changed the above line to the following per this page:
+            http://stackoverflow.com/questions/19474116/the-constructor-notification-is-deprecated
+            http://stackoverflow.com/questions/16852270/how-to-implement-the-deprecated-methods-of-notification
+         */
+        Notification notification = new Notification.Builder(context)
+                .setContentIntent(contentIntent)
+                .setContentText(tickerText)
+                .setContentTitle(contentTitle)
+                .setTicker(tickerText)
+                .setSmallIcon(icon)
+                .setWhen(when)
+                .build();
+
 		notification.flags |=
 				Notification.FLAG_ONGOING_EVENT |
 				Notification.FLAG_SHOW_LIGHTS;
@@ -249,12 +269,7 @@ public class RecordingService extends Service implements LocationListener {
 		notification.ledOnMS = 300;
 		notification.ledOffMS = 3000;
 
-		Context context = this;
-		CharSequence contentTitle = "CycleTracks - Recording";
-		CharSequence contentText = "Tap to finish your trip";
-		Intent notificationIntent = new Intent(context, RecordingActivity.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-		notification.setLatestEventInfo(context, contentTitle, contentText,	contentIntent);
+//		notification.setLatestEventInfo(context, contentTitle, contentText,	contentIntent);
         final int RECORDING_ID = 1;
 		mNotificationManager.notify(RECORDING_ID, notification);
 	}
@@ -265,9 +280,28 @@ public class RecordingService extends Service implements LocationListener {
 		CharSequence tickerText = "Recording...";
 		long when = System.currentTimeMillis();
 
-		Notification notification = new Notification(icon, tickerText, when);
+        Context context = this;
+        CharSequence contentTitle = "CycleTracks - Recording";
+        CharSequence contentText = "Tap to finish your trip";
+        Intent notificationIntent = new Intent(context, RecordingActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
-		notification.ledARGB = 0xffff00ff;
+//      Notification notification = new Notification(icon, tickerText, when);
+        /*  MARCUS
+            Changed the above line to the following per this page:
+            http://stackoverflow.com/questions/19474116/the-constructor-notification-is-deprecated
+            http://stackoverflow.com/questions/16852270/how-to-implement-the-deprecated-methods-of-notification
+         */
+        Notification notification = new Notification.Builder(context)
+                .setContentIntent(contentIntent)
+                .setContentText(tickerText)
+                .setContentTitle(contentTitle)
+                .setTicker(tickerText)
+                .setSmallIcon(icon)
+                .setWhen(when)
+                .build();
+
+        notification.ledARGB = 0xffff00ff;
 		notification.ledOnMS = 300;
 		notification.ledOffMS = 3000;
 		notification.flags = notification.flags |
@@ -276,12 +310,7 @@ public class RecordingService extends Service implements LocationListener {
 				Notification.FLAG_INSISTENT |
 				Notification.FLAG_NO_CLEAR;
 
-		Context context = this;
-		CharSequence contentTitle = "CycleTracks - Recording";
-		CharSequence contentText = "Tap to finish your trip";
-		Intent notificationIntent = new Intent(context, RecordingActivity.class);
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-		notification.setLatestEventInfo(context, contentTitle, contentText,	contentIntent);
+//		notification.setLatestEventInfo(context, contentTitle, contentText,	contentIntent);
 		final int RECORDING_ID = 1;
 		mNotificationManager.notify(RECORDING_ID, notification);
 	}
