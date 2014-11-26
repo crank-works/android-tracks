@@ -8,6 +8,7 @@ out
 # vim swap files
 *.swp
 
-# Intellij user files
+# Intellij user files per this webpage:
+# https://intellij-support.jetbrains.com/entries/23393067
 .idea/workspace.xml
 .idea/tasks.iml
